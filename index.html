@@ -107,10 +107,20 @@
 
 <script>
   // ⚙️  CONFIG — paste your Apps Script web app URL here (the full long one)
-  var APPS_SCRIPT_URL = 'https://script.google.com/a/macros/emapisa.com.ar/s/AKfycbxlgveA-M2GIoIdRYFPSFQeju37gGLOIeDE3vfalONrM1Noo4sb9ZHNQo_s-tx1QUzm/exec';
+  var APPS_SCRIPT_URL = 'https://script.google.com/a/macros/emapisa.com.ar/s/AKfycbyKYCGEnh_H7YqS19bCF5YjakA3Egoo9gO7k7SyOHWzBhYK2axPASkikxaRyI37kE5E/exec';
   // ─────────────────────────────────────────────────────────────────────
 
-  document.getElementById('loginBtn').href = APPS_SCRIPT_URL;
+  // Wrap the URL through Google's AccountChooser:
+  //   - Not logged in → clean Google login (not the Drive error)
+  //   - Logged in with emapisa.com.ar → goes straight to the form
+  //   - Logged in with wrong account → account picker, user can switch
+  // The "hd=emapisa.com.ar" hint pre-filters the account list to your domain.
+  var LOGIN_URL =
+    'https://accounts.google.com/AccountChooser' +
+    '?hd=emapisa.com.ar' +
+    '&continue=' + encodeURIComponent(APPS_SCRIPT_URL);
+
+  document.getElementById('loginBtn').href = LOGIN_URL;
 </script>
 
 </body>
