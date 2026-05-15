@@ -6,6 +6,16 @@
 <meta name="theme-color" content="#c8202c">
 <meta name="robots" content="noindex, nofollow">
 <title>EMAPI · Repartos</title>
+
+<!-- Favicon (browser tab + home screen icon) -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+
+<!-- Add-to-home-screen label on iOS/Android -->
+<meta name="apple-mobile-web-app-title" content="Repartos">
+<meta name="application-name" content="EMAPI Repartos">
+
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
@@ -26,13 +36,22 @@
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
     border: 1px solid #e0e0e0;
   }
-  .brand-mark {
-    display: inline-block; background: #c8202c; color: #fff;
+  .logo {
+    max-width: 140px; height: auto;
+    margin: 0 auto 16px; display: block;
+  }
+  .logo-fallback {
+    display: none;
+    background: #c8202c; color: #fff;
     font-size: 14px; font-weight: 700; letter-spacing: 1.2px;
     padding: 8px 16px; border-radius: 6px; margin-bottom: 20px;
   }
-  h1 { font-size: 22px; margin: 0 0 8px; font-weight: 600; }
-  .subtitle { font-size: 14px; color: #5f5f5f; margin: 0 0 24px; line-height: 1.5; }
+  .subtitle-app {
+    font-size: 13px; color: #5f5f5f; margin: 0 0 4px;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+  }
+  h1 { font-size: 22px; margin: 0; font-weight: 600; }
+  .desc { font-size: 14px; color: #5f5f5f; margin: 8px 0 24px; line-height: 1.5; }
   .info-box {
     background: #fbe6e8; border-left: 3px solid #c8202c;
     padding: 14px 16px; border-radius: 4px; margin-bottom: 20px;
@@ -66,41 +85,44 @@
     color: #5f5f5f; background: #f5f5f5;
     padding: 2px 6px; border-radius: 4px; font-size: 11px;
   }
-  .icon-lock {
-    width: 16px; height: 16px; vertical-align: -3px;
-    fill: currentColor; flex-shrink: 0;
-  }
+  .icon-lock { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 </style>
 </head>
 <body>
 
 <main class="gate">
-  <span class="brand-mark">EMAPI</span>
-  <h1>Repartos</h1>
-  <p class="subtitle">Sistema interno de gestión de despachos y entregas</p>
+  <img src="emapi-logo.png"
+       alt="EMAPI"
+       class="logo"
+       onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='inline-block';">
+  <span id="logoFallback" class="logo-fallback">EMAPI</span>
+
+  <p class="subtitle-app">Repartos</p>
+  <h1>Sistema de Despachos</h1>
+  <p class="desc">Gestión interna de despachos y entregas</p>
 
   <div class="info-box">
     <div class="info-box-title">Acceso restringido</div>
     <div class="info-box-text">
-      Esta aplicación es solo para personal autorizado de EMAPI con cuenta corporativa <span class="domain-hint">@emapi.com.ar</span>.
+      Esta aplicación es solo para personal autorizado de EMAPI con cuenta corporativa <span class="domain-hint">@emapisa.com.ar</span>.
     </div>
   </div>
 
   <a id="loginBtn" class="login-btn" href="#" target="_blank" rel="noopener">
     <svg class="icon-lock" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5v4H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-2V6a5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3v4H9V6a3 3 0 0 1 3-3zm0 11a2 2 0 0 1 2 2 2 2 0 0 1-1 1.7V20h-2v-2.3a2 2 0 0 1-1-1.7 2 2 0 0 1 2-2z"/></svg>
-    Iniciar sesión con Google
+    Acceder al sistema
   </a>
   <p class="hint">Se abrirá en una pestaña nueva. Si no tenés cuenta autorizada, podés cerrar esa pestaña y volver acá.</p>
 
   <p class="footer">
     ¿Problemas para acceder?<br>
-    Escribinos a <span class="domain-hint">soporte@emapi.com.ar</span>
+    Escribinos a <span class="domain-hint">soporte@emapisa.com.ar</span>
   </p>
 </main>
 
 <script>
   // ⚙️  CONFIG — paste your Apps Script web app URL here (the full long one)
-  var APPS_SCRIPT_URL = 'https://script.google.com/a/macros/emapisa.com.ar/s/AKfycbxWECM40qcWTbQpwgxzeB_91pJVqH5Myl43FENvnYxV1tj7NYynRHgaiK3Ly05S2Oac/exec';
+  var APPS_SCRIPT_URL = 'https://script.google.com/a/macros/emapisa.com.ar/s/PASTE_YOUR_DEPLOYMENT_ID_HERE/exec';
   // ─────────────────────────────────────────────────────────────────────
 
   document.getElementById('loginBtn').href = APPS_SCRIPT_URL;
